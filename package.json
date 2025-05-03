@@ -1,8 +1,7 @@
 {
-  "name": "react-native-appwrite-expo-newarch",
-  
+  "name": "@icarus-00/react-native-appwrite-expo-newarch",
   "description": "This repo is diy fix for issues that appeared in an expo prject after enabling newArch, please refer to the official appwrite sdk for updates",
-  "version": "0.7.3",
+  "version": "0.1.0",
   "license": "BSD-3-Clause",
   "main": "dist/cjs/sdk.js",
   "exports": {
@@ -17,7 +16,7 @@
   "types": "types/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/icarus-00/sdk-for-react-native-expo-newArch"
+    "url": "git+https://github.com/icarus-00/sdk-for-react-native-expo-newArch.git"
   },
   "scripts": {
     "build": "npm run build:types && npm run build:libs",
@@ -40,5 +39,21 @@
   "peerDependencies": {
     "expo": "*",
     "react-native": "*"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "keywords": [
+    "appwrite",
+    "newArch-test",
+    "sdk",
+    "react-native",
+    "expo",
+    "expo-go"
+  ],
+  "author": "icarus-00",
+  "bugs": {
+    "url": "https://github.com/icarus-00/sdk-for-react-native-expo-newArch/issues"
+  },
+  "homepage": "https://github.com/icarus-00/sdk-for-react-native-expo-newArch#readme"
 }
