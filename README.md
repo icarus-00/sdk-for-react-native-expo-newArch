@@ -11,7 +11,7 @@ use with caution.
 To install
 
 ```bash
-npx expo install react-native-appwrite react-native-url-polyfill
+npx expo install @icarus00x/react-native-appwrite-expo-newarch react-native-url-polyfill
 ```
 
 
