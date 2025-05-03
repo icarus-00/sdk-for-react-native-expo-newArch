@@ -1,5 +1,6 @@
-import { Platform } from 'react-native';
+import * as Device from 'expo-device';
 import * as FileSystem from 'expo-file-system';
+import { Platform } from 'react-native';
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -147,7 +148,7 @@ class Client {
                     // @ts-ignore
                     this.realtime.socket = new WebSocket(url, undefined, {
                         headers: {
-                            Origin: `appwrite-${Platform.OS}://${this.config.platform}`
+                            Origin: `appwrite-${Device.osName}://${this.config.platform}`
                         }
                     });
                     this.realtime.socket.addEventListener('message', this.realtime.onMessage);
@@ -359,7 +360,7 @@ class Client {
             var _a, _b;
             method = method.toUpperCase();
             headers = Object.assign({}, this.headers, headers);
-            headers.Origin = `appwrite-${Platform.OS}://${this.config.platform}`;
+            headers.Origin = `appwrite-${Device.osName}://${this.config.platform}`;
             let options = {
                 method,
                 headers,

@@ -4,7 +4,7 @@ import type { Models } from '../models';
 import type { UploadProgress, Payload } from '../client';
 import * as FileSystem from 'expo-file-system';
 import { Platform } from 'react-native';
-
+import * as Device from 'expo-device';
 import { ImageGravity } from '../enums/image-gravity';
 import { ImageFormat } from '../enums/image-format';
 
@@ -138,7 +138,7 @@ export class Storage extends Service {
                 length: Service.CHUNK_SIZE
             });
             var path = `data:${file.type};base64,${chunk}`;
-            if (Platform.OS.toLowerCase() === 'android') {
+            if (Device.osName?.toLowerCase() === 'android') {
                 path = FileSystem.cacheDirectory + '/tmp_chunk_' + timestamp;
                 await FileSystem.writeAsStringAsync(path, chunk, {encoding: FileSystem.EncodingType.Base64});
             }

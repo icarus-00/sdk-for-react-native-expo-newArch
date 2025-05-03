@@ -1,6 +1,5 @@
 import { Models } from './models';
 import { Service } from './service';
-import { Platform } from 'react-native';
 import * as Device from 'expo-device';
 
 type Payload = {

@@ -1,7 +1,8 @@
 'use strict';
 
-var reactNative = require('react-native');
+var Device = require('expo-device');
 var FileSystem = require('expo-file-system');
+var reactNative = require('react-native');
 
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
@@ -21,6 +22,7 @@ function _interopNamespace(e) {
     return Object.freeze(n);
 }
 
+var Device__namespace = /*#__PURE__*/_interopNamespace(Device);
 var FileSystem__namespace = /*#__PURE__*/_interopNamespace(FileSystem);
 
 /******************************************************************************
@@ -169,7 +171,7 @@ class Client {
                     // @ts-ignore
                     this.realtime.socket = new WebSocket(url, undefined, {
                         headers: {
-                            Origin: `appwrite-${reactNative.Platform.OS}://${this.config.platform}`
+                            Origin: `appwrite-${Device__namespace.osName}://${this.config.platform}`
                         }
                     });
                     this.realtime.socket.addEventListener('message', this.realtime.onMessage);
@@ -381,7 +383,7 @@ class Client {
             var _a, _b;
             method = method.toUpperCase();
             headers = Object.assign({}, this.headers, headers);
-            headers.Origin = `appwrite-${reactNative.Platform.OS}://${this.config.platform}`;
+            headers.Origin = `appwrite-${Device__namespace.osName}://${this.config.platform}`;
             let options = {
                 method,
                 headers,
