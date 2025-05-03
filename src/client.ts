@@ -1,6 +1,7 @@
 import { Models } from './models';
 import { Service } from './service';
 import { Platform } from 'react-native';
+import * as Device from 'expo-device';
 
 type Payload = {
     [key: string]: any;
@@ -299,7 +300,7 @@ class Client {
                 // @ts-ignore
                 this.realtime.socket = new WebSocket(url, undefined, {
                     headers: {
-                        Origin: `appwrite-${Platform.OS}://${this.config.platform}`
+                        Origin: `appwrite-${Device.osName}://${this.config.platform}`
                     }
                 });
                 this.realtime.socket.addEventListener('message', this.realtime.onMessage);
@@ -420,7 +421,7 @@ class Client {
         method = method.toUpperCase();
 
         headers = Object.assign({}, this.headers, headers);
-        headers.Origin = `appwrite-${Platform.OS}://${this.config.platform}`
+        headers.Origin = `appwrite-${Device.osName}://${this.config.platform}`
 
         let options: RequestInit = {
             method,

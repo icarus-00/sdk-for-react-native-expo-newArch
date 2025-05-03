@@ -1,7 +1,7 @@
 {
-  "name": "react-native-appwrite",
-  "homepage": "https://appwrite.io/support",
-  "description": "Appwrite is an open-source self-hosted backend server that abstract and simplify complex and repetitive development tasks behind a very simple REST API",
+  "name": "react-native-appwrite-expo-newarch",
+  
+  "description": "This repo is diy fix for issues that appeared in an expo prject after enabling newArch, please refer to the official appwrite sdk for updates",
   "version": "0.7.3",
   "license": "BSD-3-Clause",
   "main": "dist/cjs/sdk.js",
@@ -17,7 +17,7 @@
   "types": "types/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/appwrite/sdk-for-react-native"
+    "url": "https://github.com/icarus-00/sdk-for-react-native-expo-newArch"
   },
   "scripts": {
     "build": "npm run build:types && npm run build:libs",
@@ -27,14 +27,15 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "8.3.2",
     "playwright": "1.15.0",
-    "rollup": "2.75.4",
-    "serve-handler": "6.1.0",
+    "rollup": "^2.79.2",
+    "serve-handler": "^6.1.6",
     "tslib": "2.4.0",
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "expo-device": "^7.1.4",
     "expo-file-system": "~18.0.11",
-    "react-native": "0.76.7"
+    "react-native": "*"
   },
   "peerDependencies": {
     "expo": "*",
