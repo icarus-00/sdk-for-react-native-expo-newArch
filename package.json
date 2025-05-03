@@ -1,7 +1,7 @@
 {
   "name": "@icarus00x/react-native-appwrite-expo-newarch",
   "description": "This repo is diy fix for issues that appeared in an expo prject after enabling newArch, please refer to the official appwrite sdk for updates",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "BSD-3-Clause",
   "main": "dist/cjs/sdk.js",
   "exports": {
