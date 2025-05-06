@@ -1,8 +1,9 @@
 'use strict';
 
-var Device = require('expo-device');
+var Constants = require('expo-constants');
 var FileSystem = require('expo-file-system');
-var reactNative = require('react-native');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
@@ -22,7 +23,7 @@ function _interopNamespace(e) {
     return Object.freeze(n);
 }
 
-var Device__namespace = /*#__PURE__*/_interopNamespace(Device);
+var Constants__default = /*#__PURE__*/_interopDefaultLegacy(Constants);
 var FileSystem__namespace = /*#__PURE__*/_interopNamespace(FileSystem);
 
 /******************************************************************************
@@ -76,6 +77,12 @@ class Service {
 }
 Service.CHUNK_SIZE = 5 * 1024 * 1024; // 5MB
 
+var _a$2, _b$1;
+const Platform$1 = ((_a$2 = Constants__default["default"].platform) === null || _a$2 === void 0 ? void 0 : _a$2.ios)
+    ? 'ios'
+    : ((_b$1 = Constants__default["default"].platform) === null || _b$1 === void 0 ? void 0 : _b$1.android)
+        ? 'android'
+        : 'web';
 class AppwriteException extends Error {
     constructor(message, code = 0, type = '', response = '') {
         super(message);
@@ -171,7 +178,7 @@ class Client {
                     // @ts-ignore
                     this.realtime.socket = new WebSocket(url, undefined, {
                         headers: {
-                            Origin: `appwrite-${Device__namespace.osName}://${this.config.platform}`
+                            Origin: `appwrite-${Platform$1}://${this.config.platform}`
                         }
                     });
                     this.realtime.socket.addEventListener('message', this.realtime.onMessage);
@@ -383,7 +390,7 @@ class Client {
             var _a, _b;
             method = method.toUpperCase();
             headers = Object.assign({}, this.headers, headers);
-            headers.Origin = `appwrite-${Device__namespace.osName}://${this.config.platform}`;
+            headers.Origin = `appwrite-${Platform$1}://${this.config.platform}`;
             let options = {
                 method,
                 headers,
@@ -2456,6 +2463,12 @@ class Messaging extends Service {
     }
 }
 
+var _a$1, _b;
+const Platform = ((_a$1 = Constants__default["default"].platform) === null || _a$1 === void 0 ? void 0 : _a$1.ios)
+    ? 'ios'
+    : ((_b = Constants__default["default"].platform) === null || _b === void 0 ? void 0 : _b.android)
+        ? 'android'
+        : 'web';
 class Storage extends Service {
     constructor(client) {
         super(client);
@@ -2565,7 +2578,7 @@ class Storage extends Service {
                     length: Service.CHUNK_SIZE
                 });
                 var path = `data:${file.type};base64,${chunk}`;
-                if (reactNative.Platform.OS.toLowerCase() === 'android') {
+                if (Platform.toLowerCase() === 'android') {
                     path = FileSystem__namespace.cacheDirectory + '/tmp_chunk_' + timestamp;
                     yield FileSystem__namespace.writeAsStringAsync(path, chunk, { encoding: FileSystem__namespace.EncodingType.Base64 });
                 }

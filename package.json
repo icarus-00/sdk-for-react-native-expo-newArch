@@ -1,7 +1,7 @@
 {
   "name": "@icarus00x/react-native-appwrite-expo-newarch",
   "description": "This repo is diy fix for issues that appeared in an expo prject after enabling newArch, please refer to the official appwrite sdk for updates",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "license": "BSD-3-Clause",
   "main": "dist/cjs/sdk.js",
   "exports": {
@@ -34,7 +34,8 @@
   "dependencies": {
     "expo-device": "^7.1.4",
     "expo-file-system": "~18.0.11",
-    "react-native": "*"
+    "react-native": "*",
+    "expo-constants": "~17.1.5"
   },
   "peerDependencies": {
     "expo": "*",

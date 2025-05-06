@@ -1,6 +1,5 @@
-import * as Device from 'expo-device';
+import Constants from 'expo-constants';
 import * as FileSystem from 'expo-file-system';
-import { Platform } from 'react-native';
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -53,6 +52,12 @@ class Service {
 }
 Service.CHUNK_SIZE = 5 * 1024 * 1024; // 5MB
 
+var _a$2, _b$1;
+const Platform$1 = ((_a$2 = Constants.platform) === null || _a$2 === void 0 ? void 0 : _a$2.ios)
+    ? 'ios'
+    : ((_b$1 = Constants.platform) === null || _b$1 === void 0 ? void 0 : _b$1.android)
+        ? 'android'
+        : 'web';
 class AppwriteException extends Error {
     constructor(message, code = 0, type = '', response = '') {
         super(message);
@@ -148,7 +153,7 @@ class Client {
                     // @ts-ignore
                     this.realtime.socket = new WebSocket(url, undefined, {
                         headers: {
-                            Origin: `appwrite-${Device.osName}://${this.config.platform}`
+                            Origin: `appwrite-${Platform$1}://${this.config.platform}`
                         }
                     });
                     this.realtime.socket.addEventListener('message', this.realtime.onMessage);
@@ -360,7 +365,7 @@ class Client {
             var _a, _b;
             method = method.toUpperCase();
             headers = Object.assign({}, this.headers, headers);
-            headers.Origin = `appwrite-${Device.osName}://${this.config.platform}`;
+            headers.Origin = `appwrite-${Platform$1}://${this.config.platform}`;
             let options = {
                 method,
                 headers,
@@ -2433,6 +2438,12 @@ class Messaging extends Service {
     }
 }
 
+var _a$1, _b;
+const Platform = ((_a$1 = Constants.platform) === null || _a$1 === void 0 ? void 0 : _a$1.ios)
+    ? 'ios'
+    : ((_b = Constants.platform) === null || _b === void 0 ? void 0 : _b.android)
+        ? 'android'
+        : 'web';
 class Storage extends Service {
     constructor(client) {
         super(client);
@@ -2542,7 +2553,7 @@ class Storage extends Service {
                     length: Service.CHUNK_SIZE
                 });
                 var path = `data:${file.type};base64,${chunk}`;
-                if (Platform.OS.toLowerCase() === 'android') {
+                if (Platform.toLowerCase() === 'android') {
                     path = FileSystem.cacheDirectory + '/tmp_chunk_' + timestamp;
                     yield FileSystem.writeAsStringAsync(path, chunk, { encoding: FileSystem.EncodingType.Base64 });
                 }
