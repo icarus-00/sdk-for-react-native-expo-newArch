@@ -1,10 +1,48 @@
-# Appwrite React Native SDK
+> This is a fork from the official appwrite react native sdk, please refer to them to get regular updates and maintance
+>this repo is just to test for a solution regarding the sudden TurboModule Error with the new Architicture
+# A wrokaround for appwrite react native sdk
 
 Appwrite is an amazing platform to provide backend to your app or website, this is a fork of the official sdk (please refer to their official github page) made for react native apps.
 ## why
 well the only reason was an error that occured while testing the app after upgrading expo version and enabling new Archticture.
 this is just a test to fix, not an upgrade or anything else
 use with caution.
+
+### why not do a pull request
+for multiple of reasons biggest one so far is my lack of expertise with github and github development community, all my work so far and interaction with github was personal and limited, so i don't know where to get  started and how to test my fixes properly to not cause more harm.
+so this fork stands, as just a workaround until the more experienced devs of appwrite can track where the error is originating from and fix it.
+
+
+## does this npm package work?
+yes but on a limited time frame, it'll be not maintained, so if there are other issues and fixes i'll sync this fork to the upstream, until the main issue the npm package was created for get fixed.
+
+### why use it
+use it with caution just for personal projects, ofcouse, for anything more valuable i advice contacting the appwrite team to get a quicker fix to the issue.
+
+### how do i know this repo fixes the issue
+it works on one of my production apps, that's all i know
+i saw the error, and found out the error originates from src/client.ts so i changed the Platform module to other modules just as a workaround, and sure it works now, but i haven't gotten around why now, so i'll have to do more testing to find out.
+
+### Fixes attempted
+1. using Device module from expo-device
+
+example:
+
+```
+import * as Device from 'expo-device';
+///code before
+ this.realtime.socket = new WebSocket(url, undefined, {
+                    headers: {
+                        Origin: `appwrite-${Device.osName}://${this.config.platform}`
+                    }
+///code after
+```
+> while testing on a realme phone this fix was thrown away, as Device.osName returns something other than android.
+2. using Constants from expo-constants
+
+> currently onattempt number 2, this one addresses the previous issue with fix number 1 as 7 devices including 3 ios devices were working fine without any errors or issues.
+
+
 
 ## Installation
 
@@ -14,7 +52,7 @@ To install
 npx expo install @icarus00x/react-native-appwrite-expo-newarch react-native-url-polyfill
 ```
 
-
+> guide from the offical repo on how to use the sdk 
 
 ## Getting Started
 
